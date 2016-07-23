@@ -6,6 +6,7 @@ class PostsController < InheritedResources::Base
   # GET /posts.json
   def index
     @posts = Post.all.order(:cached_votes_up => :desc)
+    @post = Post.new
   end
 
   # GET /post/1
