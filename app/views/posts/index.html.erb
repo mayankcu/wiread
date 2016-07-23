@@ -12,8 +12,10 @@
     </tr>
   </thead>
 
+
   <tbody>
     <% @posts.each do |post| %>
+      <div class="caption" style="text-align:center;">
       <tr>
         <td><%= post.attachment %></td>
         <td><%= post.content %></td>
@@ -21,7 +23,7 @@
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <div class="caption" style="text-align:center;">
+        <td>        
 
             <%= link_to like_post_path(post),  class: "like", method: :put do %>
               <button type="button" class="btn btn-info" aria-label="Left Align">
@@ -36,7 +38,7 @@
                 <span class="badge"><%= post.get_downvotes.size %></span>
               </button>  
             <% end %>
-
+        </td>
       </div>
       </tr>
     <% end %>

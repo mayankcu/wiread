@@ -15,7 +15,7 @@ class PostsController < InheritedResources::Base
 
   # GET /posts/new
   def new
-    @post = Post.new
+  @post = Post.new
   end
 
   # GET /posts/1/edit
@@ -77,12 +77,12 @@ class PostsController < InheritedResources::Base
     	@post.downvote_from current_user
     	redirect_to posts_path
     end
-
-  private
-     # Use callbacks to share common setup or constraints between actions.
-    def set_post
+   def set_post
       @post = Post.find(params[:id])
     end
+  private
+     # Use callbacks to share common setup or constraints between actions.
+ 
     def post_params
       params.require(:post).permit(:attachment, :content, :user_id)
     end
