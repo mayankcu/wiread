@@ -7,20 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%=render 'shared/navbar' %>
+<% if notice %>
+  <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong> <%= notice %> </strong>
+  </div>
+  <%end%>
 
+<% if alert %>
+  <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong> <%= alert %> </strong>
+  </div>
+  <%end%>
 
-   <%=render 'shared/navbar' %>
-
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-
-
-<div class = "container">
 <%= yield %>
 
-	
-</div>
 
 </body>
 </html>
