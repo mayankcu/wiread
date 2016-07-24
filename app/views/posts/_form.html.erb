@@ -1,6 +1,4 @@
-
-<div class="container">
-<%= form_for @post, :html => {:class => "form-inline center"} do |f| %>
+<%= form_for @post, :html => {:class => "form-inline"} do |f| %>
   <% if @post.errors.any? %>
     <div class="form-group" id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -13,8 +11,7 @@
   <% end %>
 
   <div class="form-group">
-      <%= f.text_field :content, :class => 'input-group', :placeholder => 'What are you reading now?' %>
+      <%= f.text_field :content, :class => 'form-control input-lg ', :placeholder => 'What are you reading now?' %>
   </div>
-    <%= f.submit "Go!", :class => "btn btn-primary", :type => "submit" %>
+    <%= f.submit "Go!", :class => "btn btn-lg btn-primary", :type => "submit" %>
 <% end %>
-</div>
