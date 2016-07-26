@@ -6,7 +6,12 @@ class PostsController < InheritedResources::Base
   # GET /posts.json
   def index
     @posts = Post.all.order(:cached_votes_up => :desc)
+    @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
+    @posts_by_day = Post.all.group_by { |post| post.created_at.strftime("%D %Y") }
     @post = Post.new
+
+
+
   end
 
   # GET /post/1
@@ -28,7 +33,6 @@ class PostsController < InheritedResources::Base
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
 
     respond_to do |format|
       if @post.save

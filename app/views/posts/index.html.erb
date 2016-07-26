@@ -12,12 +12,16 @@
     </tr>
   
   <tbody>
-      <% @posts.each do |post| %>
-      <% @user = User.find_by_id(post.user_id) %>
+      <% @posts_by_day.each do |day, posts| %>
+      
+       <% @posts.each do |post| %>
+        <% @user = User.find_by_id(post.user_id) %>
         <tr>
+          <td><%= post.created_at.strftime("%B %d, %Y") %></td>
           <td><%= post.attachment %></td>
           <td><%= post.content %></td>
           <td><%= post.user_id %></td>
+          <td><%= post.updated_at.strftime("%B %d, %Y") %></td>
           
           <td><%= link_to 'Show', post %></td>
           <td><%= link_to 'Edit', edit_post_path(post) %></td>
@@ -39,10 +43,22 @@
           </td>
         </tr>
       <% end %>
-
-    
+      <% end %>
   </tbody>
 </table>
+
+
+<% @posts_by_day.each do |day, posts| %>
+      <%= day %>
+      <ul>
+        <% posts.each do |post| %>
+        <li><%= post.content %></li>
+        <% end %>
+      </ul>
+<% end %>
+
+
+
 </p>
 </div>
 
