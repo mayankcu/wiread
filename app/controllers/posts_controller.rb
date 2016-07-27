@@ -10,8 +10,6 @@ class PostsController < InheritedResources::Base
     @posts_by_day = Post.all.group_by { |post| post.created_at.strftime("%D %Y") }
     @post = Post.new
     @category = Post.where(category_id: @category_id)
-
-
   end
 
   # GET /post/1
