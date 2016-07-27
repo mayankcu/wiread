@@ -9,7 +9,7 @@ class PostsController < InheritedResources::Base
     @posts_by_month = Post.all.group_by { |post| post.created_at.strftime("%B %Y") }
     @posts_by_day = Post.all.group_by { |post| post.created_at.strftime("%D %Y") }
     @post = Post.new
-
+    @category = Post.where(category_id: @category_id)
 
 
   end
@@ -69,12 +69,6 @@ class PostsController < InheritedResources::Base
     end
   end  
 
-
-
-
-
-
-
   def upvote
     	@post.upvote_from current_user
     	redirect_to posts_path
@@ -91,7 +85,7 @@ class PostsController < InheritedResources::Base
      # Use callbacks to share common setup or constraints between actions.
  
     def post_params
-      params.require(:post).permit(:attachment, :content, :user_id)
+      params.require(:post).permit(:attachment, :content, :user_id, :category_id)
     end
     
 #upvoate from the user

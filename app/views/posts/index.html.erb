@@ -12,15 +12,21 @@
     </tr>
   
   <tbody>
-      <% @posts_by_day.each do |day, posts| %>
-      
-       <% @posts.each do |post| %>
+      <% @posts_by_day.each do |day, posts_that_day| %>
+          <tr>
+            <td colspan="10">
+              <%= day %>
+            </td>
+          </tr>
+
+       <% posts_that_day.each do |post| %>
         <% @user = User.find_by_id(post.user_id) %>
         <tr>
           <td><%= post.created_at.strftime("%B %d, %Y") %></td>
           <td><%= post.attachment %></td>
           <td><%= post.content %></td>
           <td><%= post.user_id %></td>
+          <td><%= post.category.try(:name) %></td>
           <td><%= post.updated_at.strftime("%B %d, %Y") %></td>
           
           <td><%= link_to 'Show', post %></td>
@@ -46,19 +52,6 @@
       <% end %>
   </tbody>
 </table>
-
-
-<% @posts_by_day.each do |day, posts| %>
-      <%= day %>
-      <ul>
-        <% posts.each do |post| %>
-        <li><%= post.content %></li>
-        <% end %>
-      </ul>
-<% end %>
-
-
-
 </p>
 </div>
 

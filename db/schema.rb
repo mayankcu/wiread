@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723124318) do
+ActiveRecord::Schema.define(version: 20160726014522) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "installs", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -44,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160723124318) do
     t.integer  "cached_weighted_score",   default: 0
     t.integer  "cached_weighted_total",   default: 0
     t.float    "cached_weighted_average", default: 0.0
+    t.integer  "category_id"
   end
 
   add_index "posts", ["cached_votes_down"], name: "index_posts_on_cached_votes_down"
